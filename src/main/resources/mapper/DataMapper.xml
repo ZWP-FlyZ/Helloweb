@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+ <mapper namespace="com.service.dao.DataMapper">
+ 
+ <!--  上面设置的是接口的路径  -->
+ 
+ <resultMap type="Data" id="resultListData">
+     <result column="longitude" property="longitude" />
+     <result column="altitude" property="altitude" />
+     <result column="latitude" property="latitude" />
+     <result column="density" property="density" /> 
+ </resultMap>
+ 
+    <select id="selectDataByID" parameterType="java.lang.Integer" resultType="Data">
+        select * from `data` where iddata = #{id}
+    </select>
+    
+    <select id="selectDataList" parameterType="com.service.model.ParaList"  resultMap="resultListData">
+        select * from `data` limit #{staff} ,#{len}
+    </select>
+</mapper>
